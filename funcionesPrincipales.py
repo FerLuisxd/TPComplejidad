@@ -33,7 +33,7 @@ def calcularDistancia(y1,x1,x2,y2):
 
     distance = R * c
 
-    return distance #retorna distanciaa
+    return distance #retorna distanciaaa
     #print("Result:", distance)
     #print("Should be:", 278.546, "km")
 
