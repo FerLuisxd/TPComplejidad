@@ -38,7 +38,7 @@ def calcularDistancia(x1,y1,x2,y2):
     return distance
 
 data =[]
-Obtenerdata(data)
+Obtenerdata(data) #dsda
 
 
 print(data[0][xcp],data[0][ycp])
