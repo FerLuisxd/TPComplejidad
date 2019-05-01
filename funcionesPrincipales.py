@@ -57,8 +57,57 @@ def departamentos(data):
 
 departamentos=departamentos(data)
 
-
-
-
 print(departamentos)
 print(len(departamentos))
+
+def dfs(G, s):
+    n = len(G)
+    visited = [False]*n
+    queued = [False]*n
+    queued[s] = True
+    q = [s]
+    while len(q) > 0:
+        u = q.pop()
+        if not visited[u]:
+            visited[u] = True
+            print(u)
+            for v in reversed(G[u]):
+                if not queued[v]:
+                    queued[v] = True
+                    q.append(v)
+
+def bfs(G, s,orden):
+    n = len(G)
+    totalDistance=0
+    visited = [False]*n
+    queued = [False]*n#???
+    #orden = []
+    queued[s] = True
+    q = [s]#0
+    for i in range(len(orden)):
+         if(i>=1):
+                if(i<=24):
+                    totalDistance=totalDistance+calcularDistancia(G[u][xcp],G[u][ycp],G[u-1][xcp],G[u-1][ycp])
+        if(i==25):
+                totalDistance=totalDistance+calcularDistancia(G[u][xcp],G[u][ycp],G[0][xcp],G[0][ycp])
+    while len(q) > 0:
+        u = q[0]#0
+        q = q[1:]#nada y se va 0
+        if not visited[u]:#0
+            visited[u] = True
+            #orden[0] #accedemos 0
+            if(len(orden)>1):
+                if(len(orden)<=24):
+                    totalDistance=totalDistance+calcularDistancia(G[u][xcp],G[u][ycp],G[u-1][xcp],G[u-1][ycp])
+            if(len(orden)==25):
+                totalDistance=totalDistance+calcularDistancia(G[u][xcp],G[u][ycp],G[0][xcp],G[0][ycp])
+            
+    
+    # 0 1 2 3 4 5
+    
+
+    print(totalDistance)
+    print(orden)
+
+orden = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0]
+bfs(departamentos,0,orden)
