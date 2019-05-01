@@ -45,3 +45,20 @@ print(data[0][xcp],data[0][ycp])
 print(data[1][xcp],data[1][ycp])
 print(calcularDistancia(data[0][xcp],data[0][ycp],data[1][xcp],data[1][ycp]))
 
+
+def departamentos(data):
+    departamentos=[]
+    departamentosName=[]
+    for i in range(len(data)):
+        if (data[i][dep] not in departamentosName):
+            departamentos.append(data[i])
+            departamentosName.append(data[i][dep])
+    return departamentos
+
+departamentos=departamentos(data)
+
+
+
+
+print(departamentos)
+print(len(departamentos))
