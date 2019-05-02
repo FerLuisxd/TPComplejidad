@@ -77,23 +77,6 @@ def distritoPorProvincia(provincia,data):
                 distritoName.append(data[i][dist])
     return distrito
 
-
-def dfs(G, s):
-    n = len(G)
-    visited = [False]*n
-    queued = [False]*n
-    queued[s] = True
-    q = [s]
-    while len(q) > 0:
-        u = q.pop()
-        if not visited[u]:
-            visited[u] = True
-            print(u)
-            for v in reversed(G[u]):
-                if not queued[v]:
-                    queued[v] = True
-                    q.append(v)
-
 def bfs(G, s):
     n = len(G)
     totalDistance=0
@@ -170,8 +153,49 @@ def escribirEnJson(data,recorrido,km):
              f.write(",\n")
     f.write(']]}}]}')
     f.close()
+    
+## TEBAS ##
+def Change(data, node):
+    aux = data[node]
+    data[node] = data[0]
+    data[0] = aux
+    return data    
 
+def BruteForce(G):   
+    Solution = []
+    r = len(G)
+    i = 0
+    distancia = 0
+    while(i<r):
+        if i!=r-1:
+            distancia = distancia + calcularDistancia(G[i][xcp],G[i][ycp],G[i+1][xcp],G[i+1][ycp])
+        else:
+            distancia = distancia + calcularDistancia(G[i][xcp],G[i][ycp],G[0][xcp],G[0][ycp])
+        i=i+1
+        
+        
+    Solution.append((G+[G[0]],distancia))
+    return Solution
 
+def Comparing(G,start):    
+    Change(G,start)
+    perm = permutations(G[1:])
+    possible = []
+    path = []
+    menor = inf
+    start = time.time()
+    for p in perm:
+        possible = BruteForce([G[0]]+list(p))
+        if menor > possible[0][1]:
+            path = possible
+            menor = path[0][1]
+
+    for i in range(len(path[0][0])-1):
+        print(str(path[0][0][i][dep]),"->",str(path[0][0][i+1][dep]))
+        
+    print("Distancia: ", path[0][1])
+    end = time. time()
+    print(end - start)
 
 def cli():
     print("Que desea hacer?")
@@ -232,15 +256,16 @@ def cli():
                 print("Departamento: ",name)
                 print(" ")
                 print(" ")
-                print("Provincias Disponibles:")
+                print("Provincias Disponibles:")    
                 for i in range(len(provincia)):
                     if provincia[i] not in b:
                         print(str(i)+ ") " + provincia[i][prov])
                 print("Provincias Cargadas: ")
                 print("Ingrese numero de Provincia: ")            
                 print("(X)Calcule distancia minima")
+                print("(U)Vaciar distritos cargados")
                 v=input("Ingrese opcion: ")
-                if(v is not "X"):
+                if(v is not "X" and v is not "U"):
                     for i in range(len(provincia)):
                         if(str(i)==str(v)):
                             if(provincia[i] not in b):
@@ -249,12 +274,12 @@ def cli():
                     print("(S) Calcule distancia minima(BFS)")
                     print("(B) Calcule distancia minima(BackTracking)")
                     print("(F) Calcule distancia minima(Fuerza Bruta)")
-                    v=input("Ingrese opcion ")
+                    v=input("Ingrese opcion: ")
                 if(v=="S"):
                     arr = handlerBfs(b,0)
                     escribirEnJson(arr[0],prov,arr[1])#Ingresas(DATOS_ARRAY,SI ES DEP O PROV O DIST, Kilometros)
                 if(v=="B"):
-                    arr = comparting
+                    arr = comparting()
                     #su wea
                 if(v=="F"):
                     print(1)
