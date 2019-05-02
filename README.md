@@ -87,6 +87,7 @@ se hace es terminar el correspondiente proceso recursivo, con lo que efectivamen
 
   - Los algoritmos de búsqueda exhaustiva pueden requerir un tiempo de computación astronómico si emplean un elevado número de               elementos.
   - Los algoritmos de búsqueda pueden hallar la solución correcta para un grupo pequeño de elementos, pero no de la forma más óptima.
+  - Pueden hallarse diferentes soluciones con diferentes puntos de inicio, pero al final todas señalan el mismo ciclo.
  
 
 # Bibliografia
