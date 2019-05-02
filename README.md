@@ -38,7 +38,7 @@ se hace es terminar el correspondiente proceso recursivo, con lo que efectivamen
  - BFS:
     >Es un algoritmo que consiste en un recorrido transversal de los elementos (si se visualiza como un árbol). Recorre todos los elementos del mismo nivel, y luego desciende al siguiente nivel y continúa el recorrido de manera transversal.
 
-   [![](https://static.javatpoint.com/tutorial/daa/images/backtracking-introduction.png)](https://static.javatpoint.com/tutorial/daa/images/backtracking-introduction.png)
+   [![](https://i.imgur.com/kxETgI0.png)](https://i.imgur.com/kxETgI0.png)
 
 # Complejidad de las estrategias
 
