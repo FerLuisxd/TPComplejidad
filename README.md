@@ -9,29 +9,30 @@ El problema del vendedor viajante (TSP por sus siglas en inglés) se encuentra c
 
 # Nuestra propuesta
 La solución al problema presentado representa un desafío, ya que no emplearemos algoritmos de optimización, sino que nos limitaremos a utilizar algoritmos de búsqueda. En ese sentido, solo es posible solucionar el problema en tiempos de cómputo pequeños cuando utilizamos un número pequeño de elementos.
-En nuestro caso, los algoritmos que aplicaremos son: fuerza bruta, backtracking y DFS.
+En nuestro caso, los algoritmos que aplicaremos son: fuerza bruta, backtracking y BFS.
 
 
 # Objetivos:
 
-- Implementar soluciones al problema del viajero usando métodos estudiados en clase
-- Representar la solución en una interfaz con interacción adecuada
-- Analizar la complejidad de nuestros algoritmos
+- Implementar soluciones parciales al problema del viajero utilizando solamente algoritmos de búsqueda.
+- Analizar y comprender la complejidad de cada algoritmo aplicado.
+- Representar la solución de manera gráfica y permitir la interacción del usuario a través de una interfaz.
 
 # Marco Teorico
 
  - Fuerza Bruta:
-    >Es un algoritmo
+    >Es un algoritmo que no implementa atajos para mejorar el rendimiento. Por el contrario, se encarga de probar todas las     posibilidades sistemáticamente hasta hallar la solución.
     
    [![](https://upload.wikimedia.org/wikipedia/commons/2/23/Nearestneighbor.gif)](https://upload.wikimedia.org/wikipedia/commons/2/23/Nearestneighbor.gif)
+   
+   
 - Backtracking:
-    >Es un algoritmo 
+    >Es un algoritmo que consiste en recursión intensiva para resolver problemas por etapas, que utiliza como árbol de decisiones la propia organización de la recursión.Cuando se “avanza” de etapa se realiza una llamada recursiva, y cuando se “retrocede” lo que
+se hace es terminar el correspondiente proceso recursivo, con lo que efectivamente se vuelveal estado anterior por la pila de entornos creada en la recursión. 
 
    [![](https://static.javatpoint.com/tutorial/daa/images/backtracking-introduction.png)](https://static.javatpoint.com/tutorial/daa/images/backtracking-introduction.png)
- - DFS:
-    >Es un algoritmo
-
-   [![](https://static.javatpoint.com/tutorial/daa/images/backtracking-introduction.png)](https://static.javatpoint.com/tutorial/daa/images/backtracking-introduction.png)
+   
+   
  - BFS:
     >Es un algoritmo
 
@@ -56,4 +57,10 @@ En nuestro caso, los algoritmos que aplicaremos son: fuerza bruta, backtracking 
 
 # Bibliografia
 
--   Wikipedia 
+-   Fuentes Penna, A. (2013) Problema del agente viajero. Recuperado de: https://www.uaeh.edu.mx/scige/boletin/tlahuelilpan/n3/e5.html
+    [Consulta: 1 de mayo de 2019]
+-   FreeCodeCamp (Sin fecha) Brute Force Algorithms. Recuperado de: https://guide.freecodecamp.org/algorithms/brute-force-algorithms/
+    [Consulta: 1 de mayo de 2019]
+-   Lázaro García, J. (Sin fecha) Backtracking. Recuperado de:                                                                               www.cc.uah.es/pub/Alumnos/G_Ing_Informatica/Algoritmia_y_Complejidad/anteriores/Apuntes/08_Backtracking.pdf
+    [Consulta: 1 de mayo de 2019]
+ 
