@@ -1,19 +1,21 @@
-# Problema del vendedor viajero
+# Travelling Salesman Problem (TSP) / Problema del vendedor viajante
 
-El vendedor viajero es un problema matem·tico que es importante en la investigaciÛn de operaciones y en la ciencia de la computaciÛn, y es uno de los problemas de optimizaciÛn m·s estudiados desde que se plantea en 1930. Dicho problema responde a la siguiente pregunta:
-Dada una lista de ciudades y las distancias entre cada par de ciudades, øcu·l es la ruta m·s corta posible que visita cada ciudad y regresa a la ciudad de origen?
+El problema del vendedor viajante (TSP por sus siglas en ingl√©s) consiste en resolver la siguiente interrogante: cu√°l es la ruta
+m√°s corta posible que visita cada ciudad exactamente una vez y al finalizar regresa a la ciudad origen?
+
+El problema del vendedor viajante (TSP por sus siglas en ingl√©s) se encuentra clasificado como problema de optimizaci√≥n combinatoria; es decir, un problema donde intervienen cierto n√∫mero de variables, donde cada una puede tener N diferentes valores y cuyo n√∫mero de combinaciones es de car√°cter exponencial. Ello da lugar a m√∫ltiples soluciones √≥ptimas (soluciones que se calculan en un tiempo finito) para una instancia.
 
    [![](https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/AntColony.gif/800px-AntColony.gif)](https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/AntColony.gif/800px-AntColony.gif)
 
 # Nuestra propuesta
+La soluci√≥n al problema presentado representa un desaf√≠o, ya que no emplearemos algoritmos de optimizaci√≥n, sino que nos limitaremos a utilizar algoritmos de b√∫squeda. En ese sentido, solo es posible solucionar el problema en tiempos de c√≥mputo peque√±os cuando utilizamos un n√∫mero peque√±o de elementos.
+En nuestro caso, los algoritmos que aplicaremos son: fuerza bruta, backtracking y DFS.
 
-El problema presentado pone a prueba nuestros conocimientos del curso de complejidad algoritmica, ya que para resolverlo
-debemos hacer uso de algoritmos de optimizacion aprendidos en clase.
-Es por ello que en el presente trabajo vamos a tratar de solucionar el problema del viajero!
+
 # Objetivos:
 
-- Implementar soluciones al problema del viajero usando mÈtodos estudiados en clase
-- Representar la soluciÛn en una interfaz con interacciÛn adecuada
+- Implementar soluciones al problema del viajero usando m√©todos estudiados en clase
+- Representar la soluci√≥n en una interfaz con interacci√≥n adecuada
 - Analizar la complejidad de nuestros algoritmos
 
 # Marco Teorico
