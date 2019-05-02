@@ -44,7 +44,8 @@ se hace es terminar el correspondiente proceso recursivo, con lo que efectivamen
 
 [![](http://4.bp.blogspot.com/-UoorZCAsVhM/T8F-_8210LI/AAAAAAAAADI/xGCK5B0y8CQ/s1600/Imagen1.png)](http://4.bp.blogspot.com/-UoorZCAsVhM/T8F-_8210LI/AAAAAAAAADI/xGCK5B0y8CQ/s1600/Imagen1.png)
 - Complejidad Solucion 1: (Backtracking)
- >La complejidad es de n!, pues prueba todas las permutaciones posibles para hallar el ciclo más óptimo.
+ >La complejidad es de n!, pues prueba todas las permutaciones posibles para hallar el ciclo más óptimo
+ 
     ```
     for i in range(N): 
       if(used[i]==0): 
