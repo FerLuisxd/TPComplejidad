@@ -4,6 +4,7 @@ import csv
 import time
 from math import sin, cos, sqrt, atan2, radians
 from itertools import permutations 
+import datetime
 
 def Obtenerdata(data):
     with open('DatosReales.csv','r') as registros:
@@ -43,11 +44,6 @@ data =[]
 Obtenerdata(data) 
 print("Datos Leidos")
 
-print("Que desea hacer?")
-print("1)Departamentos")
-print("2)Provicia por Departamento(Ingresar nombre de departamento)")
-
-#input(a)
 
 def departamentos(data):
     departamentos=[]
@@ -119,6 +115,7 @@ def bfs(G, s):
                 if(len(orden)<=n-1):
                     totalDistance=totalDistance+calcularDistancia(G[u][xcp],G[u][ycp],G[u-1][xcp],G[u-1][ycp])
             if(len(orden)==n):
+                totalDistance=totalDistance+calcularDistancia(G[u][xcp],G[u][ycp],G[u-1][xcp],G[u-1][ycp])
                 totalDistance=totalDistance+calcularDistancia(G[u][xcp],G[u][ycp],G[s][xcp],G[s][ycp])
                 orden.append(G[s])
             if(not allAdded):
@@ -131,39 +128,56 @@ def bfs(G, s):
     sol.append(totalDistance)
     return sol
 
-#       start = time. time()
-#print(bfs(departamentos,0))
-#nd = time. time()
-#print(end - start)
-
 def handlerBfs(G,s):
+    swap = G[s]
+    G[s] = G[0]
+    G[0]=swap
     rangoCambio=G[1:]
-    #posiblidades=[]
     solMenor=10000000000
     ordenSol=[]
-    n = len(G)
     perm = permutations(rangoCambio) 
-    f=0
     start = time. time()
-# Print the obtained permutations 
     for i in perm:
-        esta = bfs([G[s]]+list(i),s)
+        esta = bfs([G[0]]+list(i),0)
         if(solMenor>=esta[1]):
             solMenor=esta[1]
             ordenSol=esta[0]
-       # bfs(G[0]+perm(i),s)        
-    #bfs(perm(i)) #orden # n = 24
-   # f=f+1#aca entra a trabajar
     end = time. time()
     print("HandleBFS")
     print(solMenor)
-    for i in range(len(ordenSol)):
-        print(ordenSol[i][dep])
-    #print(f)
-    
     print(end - start)
+    return ordenSol
 
-    #for i in range(n):
+def escribirEnJson(data,recorrido):
+    now = datetime.datetime.now()
+    filename= str(now.year)+"-"+str(now.month)+"-"+str(now.day)+"-"+str(now.hour)+"-"+str(now.minute)+"-"+str(now.second)
+    formate = "GeoJson-{}".format(filename)
+    bien = str(formate)+".json"
+    f = open(bien, "w")
+    Recorridas=''
+    for i in range(len(data)):
+        Recorridas=Recorridas+' '+str((data[i][recorrido]))
+    stringName=(str('{"recorrido": "'+str(Recorridas)+'",'))
+    f.write(stringName)
+    stringBase=(str('"type": "FeatureCollection","features": [{"type": "Feature","properties": {},"geometry": {"type": "Polygon","coordinates": [['))
+    f.write(stringBase)
+    for i in range(len(data)):
+        f.write("["+str(data[i][xcp])+","+str(data[i][ycp])+"]")
+        if(i<len(data)-1):
+             f.write(",\n")
+    f.write(']]}}]}')
+    f.close()
+
 
 #print(len(departamentos[:-15]))
-handlerBfs(departamentos,0)
+#handlerBfs(departamentos,0)
+array = departamentos[:-19]
+
+escribirEnJson(handlerBfs(array,5),dep)
+
+
+
+print("Que desea hacer?")
+print("1)Departamentos")
+print("2)Provicia por Departamento(Ingresar nombre de departamento)")
+#x=input()
