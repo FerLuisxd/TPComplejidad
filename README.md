@@ -42,9 +42,10 @@ se hace es terminar el correspondiente proceso recursivo, con lo que efectivamen
 
 # Complejidad de las estrategias
 
+[![](http://4.bp.blogspot.com/-UoorZCAsVhM/T8F-_8210LI/AAAAAAAAADI/xGCK5B0y8CQ/s1600/Imagen1.png)](http://4.bp.blogspot.com/-UoorZCAsVhM/T8F-_8210LI/AAAAAAAAADI/xGCK5B0y8CQ/s1600/Imagen1.png)
 - Complejidad Solucion 1: (Backtracking)
     ```
-    La complejidad es de (n-1)!
+    La complejidad es de n!, pues prueba todas las permutaciones posibles para hallar la más óptima
     ```
 - Complejidad Solucion 2: (BFS)
  >Podemos ver que la complejidad es de (n-1)! ya que esta debe recorrer todos las permutaciones creadas para asi descubrir la solucion
@@ -61,9 +62,9 @@ se hace es terminar el correspondiente proceso recursivo, con lo que efectivamen
 
 # Conclusiones
 
-  - Import a HTML file and watch it magically convert to Markdown
-  - Drag and drop images (requires your Dropbox account be linked)
-  - Import and save files from GitHub, Dropbox, Google Drive and One Drive
+  - Los algoritmos de búsqueda exhaustiva pueden requerir un tiempo de computación astronómico si emplean un elevado número de               elementos.
+  - Los algoritmos de búsqueda pueden hallar la solución correcta para un grupo pequeño de elementos, pero no de la forma más óptima.
+  - Import and save files from GitHub, Dropbox, Google Drive and One Drive	
   - Drag and drop markdown and HTML files into Dillinger
   - Export documents as Markdown, HTML and PDF
 
