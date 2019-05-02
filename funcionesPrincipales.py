@@ -230,7 +230,7 @@ def cli():
                     print("(S) Calcule distancia minima(BFS)")
                     print("(B) Calcule distancia minima(BackTracking)")
                     print("(F) Calcule distancia minima(Fuerza Bruta)")
-                    print("(E) Calcula distancia minima(AlgoritmoRapido)")
+                    print("(E) Calcula distancia minima(AlgoritmoRapido)")  
                     v=input("Ingrese opcion: ")
                     if(v=="S"):
                         arr = handlerBfs(b,0)

@@ -43,6 +43,8 @@ def fastForward(G,s):
     sol.append(G[falta])
     sol.append(G[0])
     dist=dist+calcularDistancia(G[0][xcp],G[0][ycp],G[falta][xcp],G[falta][ycp])
+    print(sol)
+    print(dist)
     a.append(sol)
     a.append(dist)
     return a
