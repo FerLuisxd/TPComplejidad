@@ -28,18 +28,7 @@ nomcp = 4
 xcp = 5
 ycp = 6
 
-def calcularDistancia(x1,y1,x2,y2):        
-    R = 6373.0  # approximate radius of earth in km
-    lat1 = radians(y1) #y1
-    lon1 = radians(x1) #x1
-    lat2 = radians(y2)  #y2
-    lon2 = radians(x2) #x2  
-    dlon = lon2 - lon1 #Distancia entre longitudes
-    dlat = lat2 - lat1 #Distancia entre latitudes   
-    a = sin(dlat / 2)**2 + cos(lat1) * cos(lat2) * sin(dlon / 2)**2 
-    c = 2 * atan2(sqrt(a), sqrt(1 - a)) 
-    distance = R * c
-    return distance
+
 
 data =[]
 Obtenerdata(data) 
@@ -76,7 +65,7 @@ def distritoPorProvincia(provincia,data):
                 distrito.append(data[i])
                 distritoName.append(data[i][dist])
     return distrito
-
+####Borar aca abajo esta en BFS.py
 def bfs(G, s):
     n = len(G)
     totalDistance=0
@@ -85,7 +74,7 @@ def bfs(G, s):
     queued[s] = True
     q = [s]
     sol=[]
-    allAdded=False
+    allAdded=False  
     orden=[]
     while len(q) > 0:
         u = q[0]
@@ -119,20 +108,19 @@ def handlerBfs(G,s):
     ordenSol=[]
     sol=[]
     start = time. time()
-        rangoCambio=G[1:]
-        perm = permutations(rangoCambio) 
-        for i in perm:
-            esta = bfs([G[0]]+list(i),0)
-            if(solMenor>=esta[1]):
-                solMenor=esta[1]
-                ordenSol=esta[0]
+    rangoCambio=G[1:]
+    perm = permutations(rangoCambio) 
+    for i in perm:
+        esta = bfs([G[0]]+list(i),0)
+        if(solMenor>=esta[1]):
+            solMenor=esta[1]
+            ordenSol=esta[0]
     end = time. time()
-    print("HandleBFS")
-    print(solMenor)
     print(end - start)
     sol.append(ordenSol)
     sol.append(solMenor)
     return sol
+###FinBorrar
 
 def escribirEnJson(data,recorrido,km):
     now = datetime.datetime.now()
@@ -153,8 +141,8 @@ def escribirEnJson(data,recorrido,km):
              f.write(",\n")
     f.write(']]}}]}')
     f.close()
-    
-## TEBAS ##
+
+## FROZONO ##
 def Change(data, node):
     aux = data[node]
     data[node] = data[0]
@@ -182,20 +170,22 @@ def Comparing(G,start):
     perm = permutations(G[1:])
     possible = []
     path = []
-    menor = inf
-    start = time.time()
+    menor = 999999
     for p in perm:
         possible = BruteForce([G[0]]+list(p))
         if menor > possible[0][1]:
             path = possible
             menor = path[0][1]
-
     for i in range(len(path[0][0])-1):
         print(str(path[0][0][i][dep]),"->",str(path[0][0][i+1][dep]))
         
     print("Distancia: ", path[0][1])
-    end = time. time()
-    print(end - start)
+
+    return path
+    #[0][0][numerito][quewea]
+    #[0][1] distancia
+
+
 
 def cli():
     print("Que desea hacer?")
@@ -233,13 +223,15 @@ def cli():
                     v=input("Ingrese opcion ")
                     if(v=="S"):
                         arr = handlerBfs(b,0)
-                        escribirEnJson(arr[0],dep,arr[1])#Ingresas(DATOS_ARRAY,SI ES DEP O PROV O DIST, Kilometros)
+                        escribirEnJson(arr[0],dep,arr[1])
+                        a=False#Ingresas(DATOS_ARRAY,SI ES DEP O PROV O DIST, Kilometros)
                     if(v=="B"):
                         print(1)
                         #su wea
                     if(v=="F"):
                         print(1)
                         #su wea
+                
                          
     if(x==2):
         print("Departamentos disponibles: ")#Muestra departamenos que no esten el arrayB     
@@ -250,7 +242,7 @@ def cli():
         print("A)Provincia por Departamento")
         print("B)Distrito por Provincia")
         c = input("Opcion: ")
-        if c == 'A':
+        if (c == 'A'):
             while(a):
                 system('clear')
                 print("Departamento: ",name)
@@ -275,20 +267,17 @@ def cli():
                     print("(B) Calcule distancia minima(BackTracking)")
                     print("(F) Calcule distancia minima(Fuerza Bruta)")
                     v=input("Ingrese opcion: ")
-                if(v=="S"):
-                    arr = handlerBfs(b,0)
-                    escribirEnJson(arr[0],prov,arr[1])#Ingresas(DATOS_ARRAY,SI ES DEP O PROV O DIST, Kilometros)
-                if(v=="B"):
-                    arr = comparting()
-                    #su wea
-                if(v=="F"):
-                    print(1)
-                    #su wea    
-    
-
-            
-            
-                
+                    if(v=="S"):
+                        arr = handlerBfs(b,0)
+                        escribirEnJson(arr[0],prov,arr[1])#Ingresas(DATOS_ARRAY,SI ES DEP O PROV O DIST, Kilometros)
+                        a = False
+                    if(v=="B"):         
+                        #su wea
+                        a = False
+                    if(v=="F"):
+                        arr = Comparing(b,0)
+                        escribirEnJson(arr[0][0],prov,arr[0][1])
+                        a=False         
 
             
 

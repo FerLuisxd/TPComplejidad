@@ -43,38 +43,6 @@ Obtenerdata(data) #dsda
 
 
 
-def departamentos(data):
-    departamentos=[]
-    departamentosName=[]
-    for i in range(len(data)):
-        if (data[i][dep] not in departamentosName):
-            departamentos.append(data[i])
-            departamentosName.append(data[i][dep])
-    return departamentos
-
-departamentos=departamentos(data)
-
-def provinciaPorDepartamento(nombre,data):
-    provincias=[]
-    provinciaName=[]
-    for i in range(len(data)):
-        if(data[i][dep]==nombre):
-            if (data[i][prov] not in provinciaName):
-                provincias.append(data[i])
-                provinciaName.append(data[i][prov])
-    return provincias
-
-provinciasAmazonas=provinciaPorDepartamento("AMAZONAS",data)   
-
-def distritoPorProvincia(provincia,data):
-    distrito = []
-    distritoName = []
-    for i in range(len(data)):
-        if(data[i][prov] == provincia):
-            if(data[i][dist] not in distritoName):
-                distrito.append(data[i])
-                distritoName.append(data[i][dist])
-    return distrito
 
 def Change(data, node):
     aux = data[node]
@@ -117,5 +85,3 @@ def Comparing(G,start):
     print("Distancia: ", path[0][1])
     end = time. time()
     print(end - start)
-
-Comparing(departamentos[:-15],0)
