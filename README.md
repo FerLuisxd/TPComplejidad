@@ -48,8 +48,8 @@ se hace es terminar el correspondiente proceso recursivo, con lo que efectivamen
     ```
 - Complejidad Solucion 2: (BFS)
  >Podemos ver que la complejidad es de (n-1)! ya que esta debe recorrer todos las permutaciones creadas para asi descubrir la solucion
- con menores kilometros
-    ```
+ >con menores kilometros
+ ```
    rangoCambio=Arreglo[1:]         
    perm = permutations(rangoCambio) 
    for i in perm: 		    	
