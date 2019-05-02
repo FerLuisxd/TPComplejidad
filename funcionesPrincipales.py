@@ -7,6 +7,7 @@ from os import system
 from BruteForce import Comparing
 from BFS import handlerBfs
 from backtracking import btHandler
+from fastForward import fastForward
 
 def Obtenerdata():
     data = []
@@ -118,6 +119,7 @@ def cli():
                     print("(S) Calcule distancia minima(BFS)")
                     print("(B) Calcule distancia minima(BackTracking)")
                     print("(F) Calcule distancia minima(Fuerza Bruta)")
+                    print("(E) Calcula distancia minima(AlgoritmoRapido)")
                     v=input("Ingrese opcion ")
                     if(v=="S"):
                         arr = handlerBfs(b,0)
@@ -130,6 +132,10 @@ def cli():
                     if(v=="F"):
                         arr = Comparing(b,0,dep)
                         escribirEnJson(arr[0][0],dep,arr[0][1])
+                        a=False
+                    if(v=="E"):
+                        arr = fastForward(b,0)
+                        escribirEnJson(arr[0],prov,arr[1])
                         a=False
                 
                          
@@ -172,6 +178,7 @@ def cli():
                     print("(S) Calcule distancia minima(BFS)")
                     print("(B) Calcule distancia minima(BackTracking)")
                     print("(F) Calcule distancia minima(Fuerza Bruta)")
+                    print("(E) Calcula distancia minima(AlgoritmoRapido)")
                     v=input("Ingrese opcion: ")
                     if(v=="S"):
                         arr = handlerBfs(b,0)
@@ -184,6 +191,10 @@ def cli():
                     if(v=="F"):
                         arr = Comparing(b,0,prov)
                         escribirEnJson(arr[0][0],prov,arr[0][1])
+                        a=False
+                    if(v=="E"):
+                        arr = fastForward(b,0)
+                        escribirEnJson(arr[0],prov,arr[1])
                         a=False
         if (c == 'B'):            
             print("Departamento: ",name)
@@ -219,6 +230,7 @@ def cli():
                     print("(S) Calcule distancia minima(BFS)")
                     print("(B) Calcule distancia minima(BackTracking)")
                     print("(F) Calcule distancia minima(Fuerza Bruta)")
+                    print("(E) Calcula distancia minima(AlgoritmoRapido)")
                     v=input("Ingrese opcion: ")
                     if(v=="S"):
                         arr = handlerBfs(b,0)
@@ -231,5 +243,9 @@ def cli():
                     if(v=="F"):
                         arr = Comparing(b,0,dist)
                         escribirEnJson(arr[0][0],dist,arr[0][1])
+                        a=False
+                    if(v=="E"):
+                        arr = fastForward(b,0)
+                        escribirEnJson(arr[0],prov,arr[1])
                         a=False
 cli() 
