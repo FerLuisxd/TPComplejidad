@@ -44,8 +44,15 @@ se hace es terminar el correspondiente proceso recursivo, con lo que efectivamen
 
 [![](http://4.bp.blogspot.com/-UoorZCAsVhM/T8F-_8210LI/AAAAAAAAADI/xGCK5B0y8CQ/s1600/Imagen1.png)](http://4.bp.blogspot.com/-UoorZCAsVhM/T8F-_8210LI/AAAAAAAAADI/xGCK5B0y8CQ/s1600/Imagen1.png)
 - Complejidad Solucion 1: (Backtracking)
+ >La complejidad es de n!, pues prueba todas las permutaciones posibles para hallar el ciclo más óptimo.
     ```
-    La complejidad es de n!, pues prueba todas las permutaciones posibles para hallar la más óptima
+        for i in range(N):
+        if(used[i]==0):
+            used[i]=1
+            conf[pos]=i
+            bt(pos-1) 
+            used[i]=0
+            conf[pos]=-1
     ```
 - Complejidad Solucion 2: (BFS)
  >Podemos ver que la complejidad es de (n-1)! ya que esta debe recorrer todos las permutaciones creadas para asi descubrir la solucion
@@ -59,7 +66,18 @@ se hace es terminar el correspondiente proceso recursivo, con lo que efectivamen
 		solMenor=esta[1]
 		ordenSol=esta[0]
    ```
-
+- Complejidad Solucion 3: (Fuerza Bruta)
+ >Podemos ver que la complejidad es de (n-1)! ya que esta debe recorrer todos las permutaciones creadas para asi descubrir la solucion
+ >con menores kilometros
+ ```
+   rangoCambio=Arreglo[1:]         
+   perm = permutations(rangoCambio) 
+   for i in perm: 		    	
+   	esta = bfs([Arreglo[0]]+list(i),0)
+   	if(solMenor>=esta[1]):
+		solMenor=esta[1]
+		ordenSol=esta[0]
+   ```
 # Conclusiones
 
   - Los algoritmos de búsqueda exhaustiva pueden requerir un tiempo de computación astronómico si emplean un elevado número de               elementos.
