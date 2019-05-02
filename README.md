@@ -38,14 +38,23 @@ se hace es terminar el correspondiente proceso recursivo, con lo que efectivamen
  - BFS:
     >Es un algoritmo que consiste en un recorrido transversal de los elementos (si se visualiza como un árbol). Recorre todos los elementos del mismo nivel, y luego desciende al siguiente nivel y continúa el recorrido de manera transversal.
 
-   [![](https://static.javatpoint.com/tutorial/daa/images/backtracking-introduction.png)](https://static.javatpoint.com/tutorial/daa/images/backtracking-introduction.png)
+   [![](https://i.imgur.com/kxETgI0.png)](https://i.imgur.com/kxETgI0.png)
 
 # Complejidad de las estrategias
 
 [![](http://4.bp.blogspot.com/-UoorZCAsVhM/T8F-_8210LI/AAAAAAAAADI/xGCK5B0y8CQ/s1600/Imagen1.png)](http://4.bp.blogspot.com/-UoorZCAsVhM/T8F-_8210LI/AAAAAAAAADI/xGCK5B0y8CQ/s1600/Imagen1.png)
 - Complejidad Solucion 1: (Backtracking)
+ >La complejidad es de n!, pues prueba todas las permutaciones posibles para hallar el ciclo más óptimo
+ 
     ```
-    La complejidad es de n!, pues prueba todas las permutaciones posibles para hallar la más óptima
+    for i in range(N): 
+      if(used[i]==0): 
+        used[i]=1 
+        conf[pos]=i 
+        bt(pos-1) 
+        used[i]=0 
+        conf[pos]=-1
+
     ```
 - Complejidad Solucion 2: (BFS)
  >Podemos ver que la complejidad es de (n-1)! ya que esta debe recorrer todos las permutaciones creadas para asi descubrir la solucion
@@ -59,14 +68,27 @@ se hace es terminar el correspondiente proceso recursivo, con lo que efectivamen
 		solMenor=esta[1]
 		ordenSol=esta[0]
    ```
-
+- Complejidad Solucion 3: (Fuerza Bruta)
+ >Podemos ver que la complejidad es de (n-1)! ya que esta debe recorrer todos las permutaciones creadas para asi descubrir la solucion
+ >con menores kilometros
+ ```
+    perm = permutations(G[1:])
+    possible = []
+    path = []
+    menor = inf
+    start = time.time()
+    for p in perm:
+        possible = BruteForce([G[0]]+list(p))
+        if menor > possible[0][1]:
+            path = possible
+            menor = path[0][1]
+   ```
 # Conclusiones
 
   - Los algoritmos de búsqueda exhaustiva pueden requerir un tiempo de computación astronómico si emplean un elevado número de               elementos.
   - Los algoritmos de búsqueda pueden hallar la solución correcta para un grupo pequeño de elementos, pero no de la forma más óptima.
-  - Import and save files from GitHub, Dropbox, Google Drive and One Drive	
-  - Drag and drop markdown and HTML files into Dillinger
-  - Export documents as Markdown, HTML and PDF
+  - Pueden hallarse diferentes soluciones con diferentes puntos de inicio, pero al final todas señalan el mismo ciclo.
+ 
 
 # Bibliografia
 
