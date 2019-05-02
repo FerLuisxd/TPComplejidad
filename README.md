@@ -70,13 +70,16 @@ se hace es terminar el correspondiente proceso recursivo, con lo que efectivamen
  >Podemos ver que la complejidad es de (n-1)! ya que esta debe recorrer todos las permutaciones creadas para asi descubrir la solucion
  >con menores kilometros
  ```
-   rangoCambio=Arreglo[1:]         
-   perm = permutations(rangoCambio) 
-   for i in perm: 		    	
-   	esta = bfs([Arreglo[0]]+list(i),0)
-   	if(solMenor>=esta[1]):
-		solMenor=esta[1]
-		ordenSol=esta[0]
+    perm = permutations(G[1:])
+    possible = []
+    path = []
+    menor = inf
+    start = time.time()
+    for p in perm:
+        possible = BruteForce([G[0]]+list(p))
+        if menor > possible[0][1]:
+            path = possible
+            menor = path[0][1]
    ```
 # Conclusiones
 
