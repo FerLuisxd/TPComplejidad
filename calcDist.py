@@ -1,8 +1,4 @@
-
 from math import sin, cos, sqrt, atan2, radians
-
-
-
 
 def calcularDistancia(x1,y1,x2,y2):        
     R = 6373.0  # approximate radius of earth in km

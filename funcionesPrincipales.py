@@ -1,24 +1,27 @@
-
-
 import csv
 import time
 from math import sin, cos, sqrt, atan2, radians
 from itertools import permutations 
 import datetime
 from os import system
+from BruteForce import Comparing
+from BFS import handlerBfs
+from backtracking import btHandler
 
-def Obtenerdata(data):
+def Obtenerdata():
+    data = []
     with open('DatosReales.csv','r') as registros:
         lector = csv.reader(registros,delimiter=',')
         for fila in lector:
-            CODCP = int(fila[0]) #Codigo de centro poblado (unico)
-            DEP = fila[1]   #Departamento
-            PROV = fila[2] #Provincia
-            DIST = fila[3] #Distrito
-            NOMCP = fila[4] #Nombre del centro poblado
-            XCP = float(fila[5]) #Posicion X
-            YCP = float(fila[6]) #Posicion Y
+            CODCP = int(fila[0]) 
+            DEP = fila[1]
+            PROV = fila[2]
+            DIST = fila[3]
+            NOMCP = fila[4]
+            XCP = float(fila[5])
+            YCP = float(fila[6])
             data.append((CODCP, DEP, PROV, DIST, NOMCP, XCP, YCP))
+    return data
 
 codcp = 0
 dep  = 1
@@ -28,12 +31,7 @@ nomcp = 4
 xcp = 5
 ycp = 6
 
-
-
-data =[]
-Obtenerdata(data) 
-print("Datos Leidos")
-
+data=Obtenerdata()
 
 def departamentos(data):
     departamentos=[]
@@ -65,62 +63,7 @@ def distritoPorProvincia(provincia,data):
                 distrito.append(data[i])
                 distritoName.append(data[i][dist])
     return distrito
-####Borar aca abajo esta en BFS.py
-def bfs(G, s):
-    n = len(G)
-    totalDistance=0
-    visited = [False]*n
-    queued = [False]*n
-    queued[s] = True
-    q = [s]
-    sol=[]
-    allAdded=False  
-    orden=[]
-    while len(q) > 0:
-        u = q[0]
-        q = q[1:]
-        if not visited[u]:
-            visited[u] = True 
-            orden.append(G[u])
-            if(len(orden)>1):
-                if(len(orden)<=n-1):
-                    totalDistance=totalDistance+calcularDistancia(G[u][xcp],G[u][ycp],G[u-1][xcp],G[u-1][ycp])
-            if(len(orden)==n):
-                totalDistance=totalDistance+calcularDistancia(G[u][xcp],G[u][ycp],G[u-1][xcp],G[u-1][ycp])
-                totalDistance=totalDistance+calcularDistancia(G[u][xcp],G[u][ycp],G[s][xcp],G[s][ycp])
-                orden.append(G[s])
-            if(not allAdded):
-                allAdded = True
-                for v in range(n):
-                    if not queued[v]:  
-                        queued[v] = True
-                        q.append(v)            
-    sol.append(orden) 
-    sol.append(totalDistance)
-    return sol
 
-def handlerBfs(G,s):
-    swap = G[s]
-    G[s] = G[0]
-    G[0]=swap
-    
-    solMenor=10000000000
-    ordenSol=[]
-    sol=[]
-    start = time. time()
-    rangoCambio=G[1:]
-    perm = permutations(rangoCambio) 
-    for i in perm:
-        esta = bfs([G[0]]+list(i),0)
-        if(solMenor>=esta[1]):
-            solMenor=esta[1]
-            ordenSol=esta[0]
-    end = time. time()
-    print(end - start)
-    sol.append(ordenSol)
-    sol.append(solMenor)
-    return sol
-###FinBorrar
 
 def escribirEnJson(data,recorrido,km):
     now = datetime.datetime.now()
@@ -142,51 +85,6 @@ def escribirEnJson(data,recorrido,km):
     f.write(']]}}]}')
     f.close()
 
-## FROZONO ##
-def Change(data, node):
-    aux = data[node]
-    data[node] = data[0]
-    data[0] = aux
-    return data    
-
-def BruteForce(G):   
-    Solution = []
-    r = len(G)
-    i = 0
-    distancia = 0
-    while(i<r):
-        if i!=r-1:
-            distancia = distancia + calcularDistancia(G[i][xcp],G[i][ycp],G[i+1][xcp],G[i+1][ycp])
-        else:
-            distancia = distancia + calcularDistancia(G[i][xcp],G[i][ycp],G[0][xcp],G[0][ycp])
-        i=i+1
-        
-        
-    Solution.append((G+[G[0]],distancia))
-    return Solution
-
-def Comparing(G,start):    
-    Change(G,start)
-    perm = permutations(G[1:])
-    possible = []
-    path = []
-    menor = 999999
-    for p in perm:
-        possible = BruteForce([G[0]]+list(p))
-        if menor > possible[0][1]:
-            path = possible
-            menor = path[0][1]
-    for i in range(len(path[0][0])-1):
-        print(str(path[0][0][i][dep]),"->",str(path[0][0][i+1][dep]))
-        
-    print("Distancia: ", path[0][1])
-
-    return path
-    #[0][0][numerito][quewea]
-    #[0][1] distancia
-
-
-
 def cli():
     print("Que desea hacer?")
     print("1)Departamentos")
@@ -198,22 +96,22 @@ def cli():
     if(x==str(1)):
             while(a):
                 print("\033[H\033[J")
-                print("Departamentos disponibles ")#Muestra departamenos que no esten el arrayB     
+                print("Departamentos disponibles ")  
                 for i in range(len(departamentos)):
                     if(departamentos[i] not in b):
                         print(str(i) + " " +str(departamentos[i][dep]))
-                print("Departamentos cargados: ")#Elementos en B
+                print("Departamentos cargados: ")
                 for i in range(len(b)):
                     print(str(b[i]))
-                print("Ingrese numero de departamento:")#Ingrese i de departamentop
-                print("(X)Calcule distancia minima")#Va al siguiente calcular
+                print("Ingrese numero de departamento:")
+                print("(X)Calcule distancia minima")
                 print("(U)Vaciar departamentos cargados")
                 v=input("Ingrese opcion ")
                 if(v is not "X"):
                     for i in range(len(departamentos)):
                         if(str(i)==str(v)):
                             if(departamentos[i] not in b):
-                                    b.append(departamentos[i])#aca lol
+                                    b.append(departamentos[i])
                 if(v=="U"):
                     b=[]
                 if(v=="X"):
@@ -224,17 +122,19 @@ def cli():
                     if(v=="S"):
                         arr = handlerBfs(b,0)
                         escribirEnJson(arr[0],dep,arr[1])
-                        a=False#Ingresas(DATOS_ARRAY,SI ES DEP O PROV O DIST, Kilometros)
+                        a=False
                     if(v=="B"):
-                        print(1)
-                        #su wea
+                        arr = btHandler(b)
+                        escribirEnJson(arr[0],prov,arr[1])
+                        a=False
                     if(v=="F"):
-                        print(1)
-                        #su wea
+                        arr = Comparing(b,0,dep)
+                        escribirEnJson(arr[0][0],dep,arr[0][1])
+                        a=False
                 
                          
-    if(x==2):
-        print("Departamentos disponibles: ")#Muestra departamenos que no esten el arrayB     
+    if(x==str(2)):
+        print("Departamentos disponibles: ")
         for i in range(len(departamentos)):
             print(str(i) + ") " +str(departamentos[i][dep]))
         name = input("Nombre del Departamento: ")
@@ -253,15 +153,21 @@ def cli():
                     if provincia[i] not in b:
                         print(str(i)+ ") " + provincia[i][prov])
                 print("Provincias Cargadas: ")
+                for i in range(len(b)):
+                    print(b[i][prov])                
                 print("Ingrese numero de Provincia: ")            
                 print("(X)Calcule distancia minima")
-                print("(U)Vaciar distritos cargados")
+                print("(U)Vaciar Provincias cargadas")
                 v=input("Ingrese opcion: ")
                 if(v is not "X" and v is not "U"):
                     for i in range(len(provincia)):
                         if(str(i)==str(v)):
                             if(provincia[i] not in b):
-                                b.append(provincia[i])#aca lol  
+                                b.append(provincia[i])
+
+                if(v=="U"):
+                    b=[]
+
                 if(v=="X"):
                     print("(S) Calcule distancia minima(BFS)")
                     print("(B) Calcule distancia minima(BackTracking)")
@@ -269,16 +175,61 @@ def cli():
                     v=input("Ingrese opcion: ")
                     if(v=="S"):
                         arr = handlerBfs(b,0)
-                        escribirEnJson(arr[0],prov,arr[1])#Ingresas(DATOS_ARRAY,SI ES DEP O PROV O DIST, Kilometros)
+                        escribirEnJson(arr[0],prov,arr[1])
                         a = False
                     if(v=="B"):         
-                        #su wea
+                        arr = btHandler(b)
+                        escribirEnJson(arr[0],prov,arr[1])
                         a = False
                     if(v=="F"):
-                        arr = Comparing(b,0)
+                        arr = Comparing(b,0,prov)
                         escribirEnJson(arr[0][0],prov,arr[0][1])
-                        a=False         
-
-            
-
+                        a=False
+        if (c == 'B'):            
+            print("Departamento: ",name)
+            print("Provincias Disponibles:")    
+            for i in range(len(provincia)):
+                print(str(i)+ ") " + provincia[i][prov])
+            x = input("Ingrese nombre de la Provincia: ")
+            distrito = distritoPorProvincia(x,data)
+            while(a):
+                print("Departamento: ",name)
+                print("Provincia: ", x)
+                print(" ")
+                print("Distritos Disponibles: ")
+                for i in range(len(distrito)):
+                        if distrito[i] not in b:
+                            print(str(i)+ ") " + distrito[i][dist])
+                print("Dsitritos Cargados: ")
+                for i in range(len(b)):
+                    print(b[i][dist])
+                print("Ingrese numero de Distrito: ")            
+                print("(X)Calcule distancia minima")
+                print("(U)Vaciar distritos cargados")
+                v=input("Ingrese opcion: ")
+                if(v is not "X" and v is not "U"):
+                    for i in range(len(distrito)):
+                        if(str(i)==str(v)):
+                            if(distrito[i] not in b):
+                                b.append(distrito[i])
+                
+                if(v=="U"):
+                    b=[]               
+                if(v=="X"):
+                    print("(S) Calcule distancia minima(BFS)")
+                    print("(B) Calcule distancia minima(BackTracking)")
+                    print("(F) Calcule distancia minima(Fuerza Bruta)")
+                    v=input("Ingrese opcion: ")
+                    if(v=="S"):
+                        arr = handlerBfs(b,0)
+                        escribirEnJson(arr[0],dist,arr[1])#Ingresas(DATOS_ARRAY,SI ES DEP O PROV O DIST, Kilometros)
+                        a = False
+                    if(v=="B"):    
+                        arr = btHandler(b)     
+                        escribirEnJson(arr[0],dist,arr[1])
+                        a = False
+                    if(v=="F"):
+                        arr = Comparing(b,0,dist)
+                        escribirEnJson(arr[0][0],dist,arr[0][1])
+                        a=False
 cli() 

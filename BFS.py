@@ -1,12 +1,7 @@
-
-import csv
-import time
-from math import sin, cos, sqrt, atan2, radians
 from itertools import permutations 
 import datetime
-from os import system
-
-#Falta CalcDistancia
+from calcDist import calcularDistancia
+import time
 
 codcp = 0
 dep  = 1
@@ -67,6 +62,7 @@ def handlerBfs(G,s):
             ordenSol=esta[0]
     end = time. time()
     print(end - start)
+    print("Kms: " + str(solMenor))
     sol.append(ordenSol)
     sol.append(solMenor)
     return sol
