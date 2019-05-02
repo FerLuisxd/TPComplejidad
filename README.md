@@ -72,6 +72,23 @@ se hace es terminar el correspondiente proceso recursivo, con lo que efectivamen
  >Podemos ver que la complejidad es de (n-1)! ya que esta debe recorrer todos las permutaciones creadas para asi descubrir la solucion
  >con menores kilometros
  ```
+ 
+ def BruteForce(G):   
+    Solution = []
+    r = len(G)
+    i = 0
+    distancia = 0
+    while(i<r):
+        if i!=r-1:
+            distancia = distancia + calcularDistancia(G[i][xcp],G[i][ycp],G[i+1][xcp],G[i+1][ycp])
+        else:
+            distancia = distancia + calcularDistancia(G[i][xcp],G[i][ycp],G[0][xcp],G[0][ycp])
+        i=i+1
+        
+        
+    Solution.append((G+[G[0]],distancia))
+    return Solution
+    
     perm = permutations(G[1:])
     possible = []
     path = []
