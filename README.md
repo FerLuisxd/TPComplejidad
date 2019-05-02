@@ -46,13 +46,14 @@ se hace es terminar el correspondiente proceso recursivo, con lo que efectivamen
 - Complejidad Solucion 1: (Backtracking)
  >La complejidad es de n!, pues prueba todas las permutaciones posibles para hallar el ciclo más óptimo.
     ```
-        for i in range(N):
-        if(used[i]==0):
-            used[i]=1
-            conf[pos]=i
-            bt(pos-1) 
-            used[i]=0
-            conf[pos]=-1
+    for i in range(N): 
+      if(used[i]==0): 
+        used[i]=1 
+        conf[pos]=i 
+        bt(pos-1) 
+        used[i]=0 
+        conf[pos]=-1
+
     ```
 - Complejidad Solucion 2: (BFS)
  >Podemos ver que la complejidad es de (n-1)! ya que esta debe recorrer todos las permutaciones creadas para asi descubrir la solucion
