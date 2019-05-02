@@ -1,7 +1,9 @@
 
 
 import csv
+import time
 from math import sin, cos, sqrt, atan2, radians
+from itertools import permutations 
 
 def Obtenerdata(data):
     with open('DatosReales.csv','r') as registros:
@@ -38,13 +40,14 @@ def calcularDistancia(x1,y1,x2,y2):
     return distance
 
 data =[]
-Obtenerdata(data) #dsda
+Obtenerdata(data) 
+print("Datos Leidos")
 
+print("Que desea hacer?")
+print("1)Departamentos")
+print("2)Provicia por Departamento(Ingresar nombre de departamento)")
 
-print(data[0][xcp],data[0][ycp])
-print(data[1][xcp],data[1][ycp])
-print(calcularDistancia(data[0][xcp],data[0][ycp],data[1][xcp],data[1][ycp]))
-
+#input(a)
 
 def departamentos(data):
     departamentos=[]
@@ -57,8 +60,28 @@ def departamentos(data):
 
 departamentos=departamentos(data)
 
-print(departamentos)
-print(len(departamentos))
+def provinciaPorDepartamento(nombre,data):
+    provincias=[]
+    provinciaName=[]
+    for i in range(len(data)):
+        if(data[i][dep]==nombre):
+            if (data[i][prov] not in provinciaName):
+                provincias.append(data[i])
+                provinciaName.append(data[i][prov])
+    return provincias
+
+provinciasAmazonas=provinciaPorDepartamento("AMAZONAS",data)   
+
+def distritoPorProvincia(provincia,data):
+    distrito = []
+    distritoName = []
+    for i in range(len(data)):
+        if(data[i][prov] == provincia):
+            if(data[i][dist] not in distritoName):
+                distrito.append(data[i])
+                distritoName.append(data[i][dist])
+    return distrito
+
 
 def dfs(G, s):
     n = len(G)
@@ -76,38 +99,71 @@ def dfs(G, s):
                     queued[v] = True
                     q.append(v)
 
-def bfs(G, s,orden):
+def bfs(G, s):
     n = len(G)
     totalDistance=0
     visited = [False]*n
-    queued = [False]*n#???
-    #orden = []
+    queued = [False]*n
     queued[s] = True
-    q = [s]#0
-    for i in range(len(orden)):
-         if(i>=1):
-                if(i<=24):
-                    totalDistance=totalDistance+calcularDistancia(G[u][xcp],G[u][ycp],G[u-1][xcp],G[u-1][ycp])
-        if(i==25):
-                totalDistance=totalDistance+calcularDistancia(G[u][xcp],G[u][ycp],G[0][xcp],G[0][ycp])
+    q = [s]
+    sol=[]
+    allAdded=False
+    orden=[]
     while len(q) > 0:
-        u = q[0]#0
-        q = q[1:]#nada y se va 0
-        if not visited[u]:#0
-            visited[u] = True
-            #orden[0] #accedemos 0
+        u = q[0]
+        q = q[1:]
+        if not visited[u]:
+            visited[u] = True 
+            orden.append(G[u])
             if(len(orden)>1):
-                if(len(orden)<=24):
+                if(len(orden)<=n-1):
                     totalDistance=totalDistance+calcularDistancia(G[u][xcp],G[u][ycp],G[u-1][xcp],G[u-1][ycp])
-            if(len(orden)==25):
-                totalDistance=totalDistance+calcularDistancia(G[u][xcp],G[u][ycp],G[0][xcp],G[0][ycp])
-            
-    
-    # 0 1 2 3 4 5
-    
+            if(len(orden)==n):
+                totalDistance=totalDistance+calcularDistancia(G[u][xcp],G[u][ycp],G[s][xcp],G[s][ycp])
+                orden.append(G[s])
+            if(not allAdded):
+                allAdded = True#recorrido del grafo se selecciona el camino aqui
+                for v in range(n):#hace for a veces que no debe
+                    if not queued[v]:  
+                        queued[v] = True
+                        q.append(v)            
+    sol.append(orden)#guardar nombres 
+    sol.append(totalDistance)
+    return sol
 
-    print(totalDistance)
-    print(orden)
+#       start = time. time()
+#print(bfs(departamentos,0))
+#nd = time. time()
+#print(end - start)
 
-orden = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 0]
-bfs(departamentos,0,orden)
+def handlerBfs(G,s):
+    rangoCambio=G[1:]
+    #posiblidades=[]
+    solMenor=10000000000
+    ordenSol=[]
+    n = len(G)
+    perm = permutations(rangoCambio) 
+    f=0
+    start = time. time()
+# Print the obtained permutations 
+    for i in perm:
+        esta = bfs([G[s]]+list(i),s)
+        if(solMenor>=esta[1]):
+            solMenor=esta[1]
+            ordenSol=esta[0]
+       # bfs(G[0]+perm(i),s)        
+    #bfs(perm(i)) #orden # n = 24
+   # f=f+1#aca entra a trabajar
+    end = time. time()
+    print("HandleBFS")
+    print(solMenor)
+    for i in range(len(ordenSol)):
+        print(ordenSol[i][dep])
+    #print(f)
+    
+    print(end - start)
+
+    #for i in range(n):
+
+#print(len(departamentos[:-15]))
+handlerBfs(departamentos,0)
