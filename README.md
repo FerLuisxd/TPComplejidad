@@ -47,10 +47,12 @@ se hace es terminar el correspondiente proceso recursivo, con lo que efectivamen
     $ node app
     ```
 - Complejidad Solucion 2: (BFS)
+ >Podemos ver que la complejidad es de (n-1)! ya que esta debe recorrer todos las permutaciones creadas para asi descubrir la solucion
+ con menores kilometros
     ```
-   rangoCambio=Arreglo[1:]          #solo nos interesa los elementos que no son el punt ode inicio
-   perm = permutations(rangoCambio) #n-1!
-   for i in perm: 		    #recorre todas las permutaciones creadas
+   rangoCambio=Arreglo[1:]         
+   perm = permutations(rangoCambio) 
+   for i in perm: 		    	
    	esta = bfs([Arreglo[0]]+list(i),0)
    	if(solMenor>=esta[1]):
 		solMenor=esta[1]
