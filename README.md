@@ -85,9 +85,9 @@ se hace es terminar el correspondiente proceso recursivo, con lo que efectivamen
             distancia = distancia + calcularDistancia(G[i][xcp],G[i][ycp],G[0][xcp],G[0][ycp])
         i=i+1
         
-        
     Solution.append((G+[G[0]],distancia))
     return Solution
+    
     
     perm = permutations(G[1:])
     possible = []
