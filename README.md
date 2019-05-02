@@ -46,6 +46,16 @@ se hace es terminar el correspondiente proceso recursivo, con lo que efectivamen
     $ npm install -d
     $ node app
     ```
+- Complejidad Solucion 2: (BFS)
+    ```
+    rangoCambio=Arreglo[1:] #solo nos interesa los elementos que no son el punt ode inicio
+   perm = permutations(rangoCambio) #n-1!
+   for i in perm: #recorre todas las permutaciones creadas
+   esta = bfs([Arreglo[0]]+list(i),0)
+   if(solMenor>=esta[1]):
+	solMenor=esta[1]
+	ordenSol=esta[0]
+   ```
 
 # Conclusiones
 
