@@ -8,6 +8,7 @@ from BruteForce import Comparing
 from BFS import handlerBfs
 from backtracking import btHandler
 from fastForward import fastForward
+from Prim import PrimHandler
 
 def Obtenerdata():
     data = []
@@ -120,6 +121,7 @@ def cli():
                     print("(B) Calcule distancia minima(BackTracking)")
                     print("(F) Calcule distancia minima(Fuerza Bruta)")
                     print("(E) Calcula distancia minima(AlgoritmoRapido)")
+                    print("(P) Calcula distancia minima(AlgoritmoRapido)")
                     v=input("Ingrese opcion ")
                     if(v=="S"):
                         arr = handlerBfs(b,0)
@@ -127,7 +129,7 @@ def cli():
                         a=False
                     if(v=="B"):
                         arr = btHandler(b)
-                        escribirEnJson(arr[0],prov,arr[1])
+                        escribirEnJson(arr[0],dep,arr[1])
                         a=False
                     if(v=="F"):
                         arr = Comparing(b,0,dep)
@@ -135,7 +137,11 @@ def cli():
                         a=False
                     if(v=="E"):
                         arr = fastForward(b,0)
-                        escribirEnJson(arr[0],prov,arr[1])
+                        escribirEnJson(arr[0],dep,arr[1])
+                        a=False
+                    if(v=="P"):
+                        arr = PrimHandler(b,0)
+                        escribirEnJson(arr[0],dep,arr[1])
                         a=False
                 
                          
