@@ -18,6 +18,7 @@ def bfs(G, s):
     queued = [False]*n
     queued[s] = True
     q = [s]
+    cost=[]
     sol=[]
     allAdded=False  
     orden=[]
@@ -29,10 +30,17 @@ def bfs(G, s):
             orden.append(G[u])
             if(len(orden)>1):
                 if(len(orden)<=n-1):
-                    totalDistance=totalDistance+calcularDistancia(G[u][xcp],G[u][ycp],G[u-1][xcp],G[u-1][ycp])
+                    f = calcularDistancia(G[u][xcp],G[u][ycp],G[u-1][xcp],G[u-1][ycp])
+                    totalDistance=totalDistance+f
+                    cost.append(f)
             if(len(orden)==n):
-                totalDistance=totalDistance+calcularDistancia(G[u][xcp],G[u][ycp],G[u-1][xcp],G[u-1][ycp])
-                totalDistance=totalDistance+calcularDistancia(G[u][xcp],G[u][ycp],G[s][xcp],G[s][ycp])
+                f= calcularDistancia(G[u][xcp],G[u][ycp],G[u-1][xcp],G[u-1][ycp])
+                totalDistance=totalDistance+f
+                cost.append(f)
+                
+                f = calcularDistancia(G[u][xcp],G[u][ycp],G[s][xcp],G[s][ycp])
+                totalDistance=totalDistance+f
+                cost.append(f)
                 orden.append(G[s])
             if(not allAdded):
                 allAdded = True
@@ -42,6 +50,7 @@ def bfs(G, s):
                         q.append(v)            
     sol.append(orden) 
     sol.append(totalDistance)
+    sol.append(cost)
     return sol
 
 def handlerBfs(G,s):
@@ -54,15 +63,18 @@ def handlerBfs(G,s):
     sol=[]
     start = time. time()
     rangoCambio=G[1:]
+    cost=[]
     perm = permutations(rangoCambio) 
     for i in perm:
         esta = bfs([G[0]]+list(i),0)
         if(solMenor>=esta[1]):
             solMenor=esta[1]
             ordenSol=esta[0]
+            cost=esta[2]
     end = time. time()
     print(end - start)
     print("Kms: " + str(solMenor))
+    print(cost)
     sol.append(ordenSol)
     sol.append(solMenor)
     return sol

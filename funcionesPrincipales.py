@@ -7,7 +7,7 @@ from os import system
 from BruteForce import Comparing
 from BFS import handlerBfs
 from backtracking import btHandler
-from fastForward import fastForward
+from Prim import Prim
 from Prim import PrimHandler
 
 def Obtenerdata():
@@ -120,8 +120,7 @@ def cli():
                     print("(S) Calcule distancia minima(BFS)")
                     print("(B) Calcule distancia minima(BackTracking)")
                     print("(F) Calcule distancia minima(Fuerza Bruta)")
-                    print("(E) Calcula distancia minima(AlgoritmoRapido)")
-                    print("(P) Calcula distancia minima(AlgoritmoRapido)")
+                    print("(E) Calcula distancia minima(Prim)")
                     v=input("Ingrese opcion ")
                     if(v=="S"):
                         arr = handlerBfs(b,0)
@@ -136,11 +135,7 @@ def cli():
                         escribirEnJson(arr[0][0],dep,arr[0][1])
                         a=False
                     if(v=="E"):
-                        arr = fastForward(b,0)
-                        escribirEnJson(arr[0],dep,arr[1])
-                        a=False
-                    if(v=="P"):
-                        arr = PrimHandler(b,0)
+                        arr = PrimHandler(b)
                         escribirEnJson(arr[0],dep,arr[1])
                         a=False
                 
@@ -184,7 +179,7 @@ def cli():
                     print("(S) Calcule distancia minima(BFS)")
                     print("(B) Calcule distancia minima(BackTracking)")
                     print("(F) Calcule distancia minima(Fuerza Bruta)")
-                    print("(E) Calcula distancia minima(AlgoritmoRapido)")
+                    print("(E) Calcula distancia minima(Prim)")
                     v=input("Ingrese opcion: ")
                     if(v=="S"):
                         arr = handlerBfs(b,0)
@@ -199,7 +194,7 @@ def cli():
                         escribirEnJson(arr[0][0],prov,arr[0][1])
                         a=False
                     if(v=="E"):
-                        arr = fastForward(b,0)
+                        arr = PrimHandler(b)
                         escribirEnJson(arr[0],prov,arr[1])
                         a=False
         if (c == 'B'):            
@@ -236,7 +231,7 @@ def cli():
                     print("(S) Calcule distancia minima(BFS)")
                     print("(B) Calcule distancia minima(BackTracking)")
                     print("(F) Calcule distancia minima(Fuerza Bruta)")
-                    print("(E) Calcula distancia minima(AlgoritmoRapido)")  
+                    print("(E) Calcula distancia minima(Prim)")  
                     v=input("Ingrese opcion: ")
                     if(v=="S"):
                         arr = handlerBfs(b,0)
@@ -251,7 +246,7 @@ def cli():
                         escribirEnJson(arr[0][0],dist,arr[0][1])
                         a=False
                     if(v=="E"):
-                        arr = fastForward(b,0)
+                        arr = PrimHandler(b)
                         escribirEnJson(arr[0],prov,arr[1])
                         a=False
 cli() 
