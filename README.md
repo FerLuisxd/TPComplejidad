@@ -39,6 +39,25 @@ se hace es terminar el correspondiente proceso recursivo, con lo que efectivamen
     >Es un algoritmo que consiste en un recorrido transversal de los elementos (si se visualiza como un árbol). Recorre todos los elementos del mismo nivel, y luego desciende al siguiente nivel y continúa el recorrido de manera transversal.
 
    [![](https://i.imgur.com/kxETgI0.png)](https://i.imgur.com/kxETgI0.png)
+   
+ - Prim:
+    >Es un algoritmo que encuentra un subconjunto de aristas que forman un árbol con todos los vértices, donde el peso total de todas las aristas en el árbol es el mínimo posible.
+    
+  [![](https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/AntColony.gif/800px-AntColony.gif)](https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/AntColony.gif/800px-AntColony.gif)
+   
+   
+- Backtracking:
+    >Es un algoritmo que consiste en recursión intensiva para resolver problemas por etapas, que utiliza como árbol de decisiones la propia organización de la recursión.Cuando se “avanza” de etapa se realiza una llamada recursiva, y cuando se “retrocede” lo que
+se hace es terminar el correspondiente proceso recursivo, con lo que efectivamente se vuelveal estado anterior por la pila de entornos creada en la recursión. 
+
+   [![](https://static.javatpoint.com/tutorial/daa/images/backtracking-introduction.png)](https://static.javatpoint.com/tutorial/daa/images/backtracking-introduction.png)
+   
+   
+ - BFS:
+    >Es un algoritmo que consiste en un recorrido transversal de los elementos (si se visualiza como un árbol). Recorre todos los elementos del mismo nivel, y luego desciende al siguiente nivel y continúa el recorrido de manera transversal.
+
+   [![](https://i.imgur.com/kxETgI0.png)](https://i.imgur.com/kxETgI0.png) 
+
 
 # Complejidad de las estrategias
 
@@ -100,6 +119,31 @@ se hace es terminar el correspondiente proceso recursivo, con lo que efectivamen
             path = possible
             menor = path[0][1]
    ```
+ - Complejidad Solucion 4: (Prim)
+ >Esta solucion usa el algoritmo prim en todos los puntos iniciales, obteniendo el arbol de expansion mas corto que regresa al punto de inicio, el algoritmo prim es en si n*log(n) pero como lo debemos comparar con todos los puntos de inicio es n^2*log(n) 
+ ```
+for i in range(len(G)-1):#-1 porque el ultimo sabemos que es del punto final al inicio.
+        menor=1000000000
+        menorpos=i
+        xy=nexti[len(nexti)-1]
+        for j in possibleWays:
+                    f=calcularDistancia(G[xy][xcp],G[xy][ycp],G[j][xcp],G[j][ycp])
+                    if(menor>f and f is not 0.0):
+                        menor=f
+                        menorpos=j
+        path.append(menorpos)
+        dist=dist+menor
+        nexti.append(menorpos)
+        sol.append(G[menorpos])
+        costo.append(menor)
+        possibleWays.remove(menorpos)
+    wa= path[len(path)-1]
+    path.append(0)
+    sol.append(G[0])
+    cost = calcularDistancia(G[0][xcp],G[0][ycp],G[wa][xcp],G[wa][ycp])
+    dist=dist+cost
+   ```
+  
 # Conclusiones
 
   - Los algoritmos de búsqueda exhaustiva pueden requerir un tiempo de computación astronómico si emplean un elevado número de               elementos.
