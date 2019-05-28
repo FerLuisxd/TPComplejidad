@@ -19,21 +19,25 @@ def Prim(G,s):
     G[s] = G[0]
     G[0]=swap
     dist=0
-    sol=[]
-    nexti=[]
+    sol=[]#solucion, modo G (con toda la informacion)
+    nexti=[]#Siguiente en buscar
     nexti.append(0)
     a=[]
-    path=[]
+    path=[]#path de solo numeros...
     path.append(0)
     sol.append(G[0])
+    possibleWays=[]
+    for i in range(len(G)):
+        possibleWays.append(i)
+    possibleWays.remove(0)
     costo=[]
-    for i in range(len(G)-1):
+    for i in range(len(G)-1):#-1 porque el ultimo sabemos que es del punto final al inicio.
         menor=1000000000
         menorpos=i
         xy=nexti[len(nexti)-1]
-        for j in range(len(G)):
+        for j in possibleWays:
             #if(j != i):
-                if(j not in path):
+                #if(j not in path):
                     f=calcularDistancia(G[xy][xcp],G[xy][ycp],G[j][xcp],G[j][ycp])
                     if(menor>f and f is not 0.0):
                         menor=f
@@ -43,16 +47,13 @@ def Prim(G,s):
         nexti.append(menorpos)
         sol.append(G[menorpos])
         costo.append(menor)
+        possibleWays.remove(menorpos)
     wa= path[len(path)-1]
-  #  if(costo[len(costo)-1]==996.0691874058272):
-  #      print(a)
     path.append(0)
     sol.append(G[0])
     cost = calcularDistancia(G[0][xcp],G[0][ycp],G[wa][xcp],G[wa][ycp])
     dist=dist+cost
     costo.append(cost)
-    #print(sol)
-    #print(dist)
     a.append(sol)
     a.append(dist)
     a.append(path)
@@ -64,7 +65,7 @@ def PrimHandler(G):
     menor =1000000
     sol=0
     path=0
-    for i in range(len(G)):
+    for i in range(len(G)):#n * n * n*log(n)
         a =Prim(G,i)
         if(menor>a[1]):
             menor=a[1]
@@ -75,7 +76,7 @@ def PrimHandler(G):
     realsol=[]
     realsol.append(sol)
     realsol.append(menor)
-    
+    print(menor)
     realsol.append(path)
     realsol.append(cost)
     return realsol
