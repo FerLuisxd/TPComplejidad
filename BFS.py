@@ -11,7 +11,7 @@ nomcp = 4
 xcp = 5
 ycp = 6
 
-def bfs(G, s):
+def bfs(G, s): #ola canaval
     n = len(G)
     totalDistance=0
     visited = [False]*n
