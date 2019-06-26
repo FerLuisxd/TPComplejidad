@@ -142,7 +142,24 @@ for i in range(len(G)-1):#-1 porque el ultimo sabemos que es del punto final al 
     cost = calcularDistancia(G[0][xcp],G[0][ycp],G[wa][xcp],G[wa][ycp])
     dist=dist+cost
    ```
-  
+   - Complejidad Solucion 5: (Programación Dinámica)
+ >Esta solución, que emplea el algoritmo de Held-Karp, calcula todos los posibles subconjuntos, la cual es una cantidad exponencial 2^n. Además, por cada subconjunto. Además, en cada subconjunto se hace un recorrido a través de cada vértice. Por lo tanto, resulta en una complejidad de n*2^n
+ ```
+ for _ in range(2, n):
+        for subs in itertools.combinations(range(1, n), _): #todos los subconjuntos posibles
+            bits = 0
+            for bit in subs:
+                bits |= 1 << bit
+            for k in subs:
+                prev = bits & ~(1 << k)
+                res = []
+                for m in subs:
+                    if m == 0 or m == k:
+                        continue
+                    res.append((C[(prev, m)][0] + distancias[m][k], m))
+                C[(bits, k)] = min(res)
+ 
+   ```
 # Conclusiones
 
   - Los algoritmos de búsqueda exhaustiva pueden requerir un tiempo de computación astronómico si emplean un elevado número de               elementos.
