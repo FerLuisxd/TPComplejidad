@@ -49,8 +49,7 @@ se hace es terminar el correspondiente proceso recursivo, con lo que efectivamen
 - Programación dinámica (Algoritmo de Held-Karp):
     >Es un algoritmo que consiste en calcular el menor costo a través de subconjuntos de nodos reutilizando las soluciones previamente calculadas, que es la característica principal de la programación dinámica.
 
-   [![](https://cdn-images-1.medium.com/max/1600/1*c5cw35mBFfgzn_T9LOh3zA.jpeg)]
-   (https://cdn-images-1.medium.com/max/1600/1*c5cw35mBFfgzn_T9LOh3zA.jpeg)
+   ![](https://cdn-images-1.medium.com/max/1600/1*c5cw35mBFfgzn_T9LOh3zA.jpeg)
    
    
  - BFS:
