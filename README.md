@@ -29,8 +29,8 @@ En nuestro caso, los algoritmos que aplicaremos son: fuerza bruta, backtracking 
    
    
 - Backtracking:
-    >Es un algoritmo que consiste en recursión intensiva para resolver problemas por etapas, que utiliza como árbol de decisiones la propia organización de la recursión.Cuando se “avanza” de etapa se realiza una llamada recursiva, y cuando se “retrocede” lo que
-se hace es terminar el correspondiente proceso recursivo, con lo que efectivamente se vuelveal estado anterior por la pila de entornos creada en la recursión. 
+    >Es un algoritmo que consiste en recursión intensiva para resolver problemas por etapas, que utiliza como árbol de decisiones la propia organización de la recursión. Cuando se “avanza” de etapa se realiza una llamada recursiva, y cuando se “retrocede” lo que
+se hace es terminar el correspondiente proceso recursivo, con lo que efectivamente se vuelve al estado anterior por la pila de entornos creada en la recursión. 
 
    [![](https://static.javatpoint.com/tutorial/daa/images/backtracking-introduction.png)](https://static.javatpoint.com/tutorial/daa/images/backtracking-introduction.png)
    
@@ -46,11 +46,11 @@ se hace es terminar el correspondiente proceso recursivo, con lo que efectivamen
   [![](https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/AntColony.gif/800px-AntColony.gif)](https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/AntColony.gif/800px-AntColony.gif)
    
    
-- Backtracking:
-    >Es un algoritmo que consiste en recursión intensiva para resolver problemas por etapas, que utiliza como árbol de decisiones la propia organización de la recursión.Cuando se “avanza” de etapa se realiza una llamada recursiva, y cuando se “retrocede” lo que
-se hace es terminar el correspondiente proceso recursivo, con lo que efectivamente se vuelveal estado anterior por la pila de entornos creada en la recursión. 
+- Programación dinámica (Algoritmo de Held-Karp):
+    >Es un algoritmo que consiste en calcular el menor costo a través de subconjuntos de nodos reutilizando las soluciones previamente calculadas, que es la característica principal de la programación dinámica.
 
-   [![](https://static.javatpoint.com/tutorial/daa/images/backtracking-introduction.png)](https://static.javatpoint.com/tutorial/daa/images/backtracking-introduction.png)
+   [![](https://cdn-images-1.medium.com/max/1600/1*c5cw35mBFfgzn_T9LOh3zA.jpeg)]
+   (https://cdn-images-1.medium.com/max/1600/1*c5cw35mBFfgzn_T9LOh3zA.jpeg)
    
    
  - BFS:
