@@ -9,7 +9,7 @@ from BFS import handlerBfs
 from backtracking import btHandler
 from Prim import Prim
 from Prim import PrimHandler
-
+from DP_HK import HK 
 def Obtenerdata():
     data = []
     with open('DatosReales.csv','r') as registros:
@@ -88,7 +88,7 @@ def escribirEnJson(data,recorrido,km):
     f.close()
 
 def cli():
-    print("Que desea hacer?")
+    print("Que desea testear?")
     print("1)Departamentos")
     print("2)Provicia por Departamento(Ingresar nombre de departamento)")
     x=input('Ingrese opcion ')
@@ -121,6 +121,7 @@ def cli():
                     print("(B) Calcule distancia minima(BackTracking)")
                     print("(F) Calcule distancia minima(Fuerza Bruta)")
                     print("(E) Calcula distancia minima(Prim)")
+                    print("(D) Calcula distancia minima(Programacion dinamica)")
                     v=input("Ingrese opcion ")
                     if(v=="S"):
                         arr = handlerBfs(b,0)
@@ -136,6 +137,10 @@ def cli():
                         a=False
                     if(v=="E"):
                         arr = PrimHandler(b)
+                        escribirEnJson(arr[0],dep,arr[1])
+                        a=False
+                    if(v=="D"):
+                        arr = HK(b)
                         escribirEnJson(arr[0],dep,arr[1])
                         a=False
                 
@@ -180,6 +185,7 @@ def cli():
                     print("(B) Calcule distancia minima(BackTracking)")
                     print("(F) Calcule distancia minima(Fuerza Bruta)")
                     print("(E) Calcula distancia minima(Prim)")
+                    print("(D) Calcula distancia minima(Programacion dinamica)")
                     v=input("Ingrese opcion: ")
                     if(v=="S"):
                         arr = handlerBfs(b,0)
@@ -197,6 +203,11 @@ def cli():
                         arr = PrimHandler(b)
                         escribirEnJson(arr[0],prov,arr[1])
                         a=False
+                    if(v=="D"):
+                        arr = HK(b)
+                        escribirEnJson(arr[0],prov,arr[1])
+                        a=False
+                    
         if (c == 'B'):            
             print("Departamento: ",name)
             print("Provincias Disponibles:")    
@@ -231,7 +242,8 @@ def cli():
                     print("(S) Calcule distancia minima(BFS)")
                     print("(B) Calcule distancia minima(BackTracking)")
                     print("(F) Calcule distancia minima(Fuerza Bruta)")
-                    print("(E) Calcula distancia minima(Prim)")  
+                    print("(E) Calcula distancia minima(Prim)")
+                    print("(D) Calcula distancia minima(Programacion dinamica)")  
                     v=input("Ingrese opcion: ")
                     if(v=="S"):
                         arr = handlerBfs(b,0)
@@ -247,6 +259,10 @@ def cli():
                         a=False
                     if(v=="E"):
                         arr = PrimHandler(b)
-                        escribirEnJson(arr[0],prov,arr[1])
+                        escribirEnJson(arr[0],dist,arr[1])
+                        a=False
+                    if(v=="D"):
+                        arr = HK(b)
+                        escribirEnJson(arr[0],dist,arr[1])
                         a=False
 cli() 

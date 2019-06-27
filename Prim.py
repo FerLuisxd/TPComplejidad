@@ -1,5 +1,5 @@
 
-
+import time
 from calcDist import calcularDistancia
 
 codcp = 0
@@ -61,6 +61,7 @@ def Prim(G,s):
     return a
 
 def PrimHandler(G):
+    start = time. time()
     x=[]
     menor =1000000
     sol=0
@@ -72,7 +73,9 @@ def PrimHandler(G):
             sol=a[0]
             path=a[2]
             cost=a[3]
-    
+    end = time. time()
+    print("Tiempo de ejecución: " + str(end - start))
+    print("Km recorridos: " + str(menor))
     realsol=[]
     realsol.append(sol)
     realsol.append(menor)
@@ -82,6 +85,6 @@ def PrimHandler(G):
     return realsol
 
 
-#G=[(683892, 'JUNIN', 'SATIPO', 'RIO TAMBO', 'Campo Verde', -73.68263125, -11.23852662), (683894, 'ICA', 'ICA', 'LA TINGUI?æA', 'Sumac Wassi', -75.69002867, -14.0320047), (683896, 'CUSCO', 'PAUCARTAMBO', 'KOS?æIPATA', 'Selva Verde', -71.41628373, -12.93040825), (683897, 'TUMBES', 'ZARUMILLA', 'MATAPALO', 'Angel de la Luz', -80.25141478, -3.694722345), (683898, 'LIMA', 'LIMA', 'LURIGANCHO', 'Casa Huerta', -76.6739434, -11.91991169)]
+G=[(683892, 'JUNIN', 'SATIPO', 'RIO TAMBO', 'Campo Verde', -73.68263125, -11.23852662), (683894, 'ICA', 'ICA', 'LA TINGUI?æA', 'Sumac Wassi', -75.69002867, -14.0320047), (683896, 'CUSCO', 'PAUCARTAMBO', 'KOS?æIPATA', 'Selva Verde', -71.41628373, -12.93040825), (683897, 'TUMBES', 'ZARUMILLA', 'MATAPALO', 'Angel de la Luz', -80.25141478, -3.694722345), (683898, 'LIMA', 'LIMA', 'LURIGANCHO', 'Casa Huerta', -76.6739434, -11.91991169)]
 
-#PrimHandler(G)
+PrimHandler(G)
