@@ -29,8 +29,8 @@ En nuestro caso, los algoritmos que aplicaremos son: fuerza bruta, backtracking 
    
    
 - Backtracking:
-    >Es un algoritmo que consiste en recursión intensiva para resolver problemas por etapas, que utiliza como árbol de decisiones la propia organización de la recursión.Cuando se “avanza” de etapa se realiza una llamada recursiva, y cuando se “retrocede” lo que
-se hace es terminar el correspondiente proceso recursivo, con lo que efectivamente se vuelveal estado anterior por la pila de entornos creada en la recursión. 
+    >Es un algoritmo que consiste en recursión intensiva para resolver problemas por etapas, que utiliza como árbol de decisiones la propia organización de la recursión. Cuando se “avanza” de etapa se realiza una llamada recursiva, y cuando se “retrocede” lo que
+se hace es terminar el correspondiente proceso recursivo, con lo que efectivamente se vuelve al estado anterior por la pila de entornos creada en la recursión. 
 
    [![](https://static.javatpoint.com/tutorial/daa/images/backtracking-introduction.png)](https://static.javatpoint.com/tutorial/daa/images/backtracking-introduction.png)
    
@@ -46,11 +46,10 @@ se hace es terminar el correspondiente proceso recursivo, con lo que efectivamen
   [![](https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/AntColony.gif/800px-AntColony.gif)](https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/AntColony.gif/800px-AntColony.gif)
    
    
-- Backtracking:
-    >Es un algoritmo que consiste en recursión intensiva para resolver problemas por etapas, que utiliza como árbol de decisiones la propia organización de la recursión.Cuando se “avanza” de etapa se realiza una llamada recursiva, y cuando se “retrocede” lo que
-se hace es terminar el correspondiente proceso recursivo, con lo que efectivamente se vuelveal estado anterior por la pila de entornos creada en la recursión. 
+- Programación dinámica (Algoritmo de Held-Karp):
+    >Es un algoritmo que consiste en calcular el menor costo a través de subconjuntos de nodos reutilizando las soluciones previamente calculadas, que es la característica principal de la programación dinámica.
 
-   [![](https://static.javatpoint.com/tutorial/daa/images/backtracking-introduction.png)](https://static.javatpoint.com/tutorial/daa/images/backtracking-introduction.png)
+   ![](https://cdn-images-1.medium.com/max/1600/1*c5cw35mBFfgzn_T9LOh3zA.jpeg)
    
    
  - BFS:
@@ -143,7 +142,24 @@ for i in range(len(G)-1):#-1 porque el ultimo sabemos que es del punto final al 
     cost = calcularDistancia(G[0][xcp],G[0][ycp],G[wa][xcp],G[wa][ycp])
     dist=dist+cost
    ```
-  
+   - Complejidad Solucion 5: (Programación Dinámica)
+ >Esta solución, que emplea el algoritmo de Held-Karp, calcula todos los posibles subconjuntos, la cual es una cantidad exponencial 2^n. Además, por cada subconjunto. Además, en cada subconjunto se hace un recorrido a través de cada vértice. Por lo tanto, resulta en una complejidad de n*2^n
+ ```
+ for _ in range(2, n):
+        for subs in itertools.combinations(range(1, n), _): #todos los subconjuntos posibles
+            bits = 0
+            for bit in subs:
+                bits |= 1 << bit
+            for k in subs:
+                prev = bits & ~(1 << k)
+                res = []
+                for m in subs:
+                    if m == 0 or m == k:
+                        continue
+                    res.append((C[(prev, m)][0] + distancias[m][k], m))
+                C[(bits, k)] = min(res)
+ 
+   ```
 # Conclusiones
 
   - Los algoritmos de búsqueda exhaustiva pueden requerir un tiempo de computación astronómico si emplean un elevado número de               elementos.
