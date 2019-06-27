@@ -143,7 +143,7 @@ for i in range(len(G)-1):#-1 porque el ultimo sabemos que es del punto final al 
     dist=dist+cost
    ```
    - Complejidad Solucion 5: (Programación Dinámica)
- >Esta solución, que emplea el algoritmo de Held-Karp, calcula todos los posibles subconjuntos, la cual es una cantidad exponencial 2^n. Además, por cada subconjunto. Además, en cada subconjunto se hace un recorrido a través de cada vértice. Por lo tanto, resulta en una complejidad de n*2^n
+ >Esta solución, que emplea el algoritmo de Held-Karp, calcula todos los posibles subconjuntos, la cual es una cantidad exponencial 2^n. Además, por cada subconjunto. Además, en cada subconjunto se hace un recorrido a través de cada vértice y se comprueba el mejor orden de los mismos. Por lo tanto, resulta en una complejidad de (n^2)*(2^n)
  ```
  for _ in range(2, n):
         for subs in itertools.combinations(range(1, n), _): #todos los subconjuntos posibles
