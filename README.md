@@ -1,16 +1,16 @@
 # Travelling Salesman Problem (TSP) / Problema del vendedor viajante
 
-El problema del vendedor viajante (TSP por sus siglas en inglés) consiste en resolver la siguiente interrogante: cuál es la ruta
+El problema del vendedor viajante (TSP por sus siglas en inglés) consiste en resolver la siguiente interrogante: ¿cuál es la ruta
 más corta posible que visita cada ciudad exactamente una vez y al finalizar regresa a la ciudad origen?
 
-El problema del vendedor viajante (TSP por sus siglas en inglés) se encuentra clasificado como problema de optimización combinatoria; es decir, un problema donde intervienen cierto número de variables, donde cada una puede tener N diferentes valores y cuyo número de combinaciones es de carácter exponencial. Ello da lugar a múltiples soluciones óptimas (soluciones que se calculan en un tiempo finito) para una instancia.
+Este problema se encuentra clasificado como problema de optimización combinatoria; es decir, un problema el el cual intervienen cierto número de variables, donde cada una puede tener N diferentes valores y cuyo número de combinaciones es de carácter exponencial. Ello da lugar a múltiples soluciones óptimas (soluciones que se calculan en un tiempo finito) para una instancia.
 
 En el contexto de nuestro problema, utilizamos como ciudades a los centros poblados del Perú.
 
    [![](https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/AntColony.gif/800px-AntColony.gif)](https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/AntColony.gif/800px-AntColony.gif)
 
 # Nuestra propuesta
-La solución al problema presentado representa un desafío, ya que no emplearemos algoritmos de optimización, sino que nos limitaremos a utilizar algoritmos de búsqueda. En ese sentido, solo es posible solucionar el problema en tiempos de cómputo pequeños cuando utilizamos un número pequeño de elementos. Además, cabe resaltar que consideramos todos los centros poblados conectados entre sí; es decir, existe un camino de un punto hacia cualquier otro.
+La solución al problema presentado representa un desafío, ya que, actualmente, no es posible dar una solución óptima en un tiempo razonable al TSP. Sin embargo, nuestro objetivo no es dar una solución total, sino una parcial; es decir, lograr una ruta coherente y, a la vez, lograr un tiempo de ejecución reducido. En ese sentido, solo es posible solucionar el problema en tiempos de cómputo pequeños cuando utilizamos un número pequeño de elementos. Además, cabe resaltar que consideramos todos los centros poblados conectados entre sí; es decir, existe un camino de un punto hacia cualquier otro.
 En nuestro caso, los algoritmos que aplicaremos son: fuerza bruta, backtracking y BFS.
 
 
@@ -162,9 +162,11 @@ for i in range(len(G)-1):#-1 porque el ultimo sabemos que es del punto final al 
    ```
 # Conclusiones
 
-  - Los algoritmos de búsqueda exhaustiva pueden requerir un tiempo de computación astronómico si emplean un elevado número de               elementos.
-  - Los algoritmos de búsqueda pueden hallar la solución correcta para un grupo pequeño de elementos, pero no de la forma más óptima.
-  - La representación gráfica de la solución permite observar que efectivamente es el camino más lógico y coherente.
+  - Los algoritmos de búsqueda exhaustiva (y también Held-Karp) pueden requerir un tiempo de computación astronómico si emplean un           elevado número de elementos.
+  - Los algoritmos de búsqueda (y también Held-Karp) pueden hallar la solución correcta para un grupo pequeño de elementos, pero no de       la forma más óptima.
+  - Los algoritmos que ofrecen una solución medianamente óptima, emplean un tiempo de computación corto a pesar de emplear un número         elevado de elementos.
+  - La optimización de la ruta es directamente proporcional al tiempo de ejecución para hallarla. Es decir, mientras más óptima se desee     la ruta, más tiempo tardará en ser hallada.
+  - La representación gráfica de la solución permite observar que efectivamente  el camino es lógico y coherente.
   - Pueden hallarse diferentes soluciones con diferentes puntos de inicio, pero al final todas señalan el mismo ciclo.
  
 
