@@ -52,10 +52,10 @@ se hace es terminar el correspondiente proceso recursivo, con lo que efectivamen
    ![](https://cdn-images-1.medium.com/max/1600/1*c5cw35mBFfgzn_T9LOh3zA.jpeg)
    
    
- - BFS:
+ - Kruskal:
     >Es un algoritmo que consiste en un recorrido transversal de los elementos (si se visualiza como un árbol). Recorre todos los elementos del mismo nivel, y luego desciende al siguiente nivel y continúa el recorrido de manera transversal.
 
-   [![](https://i.imgur.com/kxETgI0.png)](https://i.imgur.com/kxETgI0.png) 
+   [![](https://www.gatevidyalay.com/wp-content/uploads/2018/07/Prims-and-Kruskals-Algorithm.png) 
 
 
 # Complejidad de las estrategias
