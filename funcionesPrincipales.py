@@ -10,6 +10,8 @@ from backtracking import btHandler
 from Prim import Prim
 from Prim import PrimHandler
 from DP_HK import HK 
+from Kruskall import KruskallPrint
+
 def Obtenerdata():
     data = []
     with open('DatosReales.csv','r') as registros:
@@ -33,6 +35,7 @@ nomcp = 4
 xcp = 5
 ycp = 6
 
+test = []
 data=Obtenerdata()
 
 def departamentos(data):
@@ -91,6 +94,7 @@ def cli():
     print("Que desea testear?")
     print("1)Departamentos")
     print("2)Provicia por Departamento(Ingresar nombre de departamento)")
+    print("3)N centros poblados")
     x=input('Ingrese opcion ')
     print(x)
     a = True
@@ -122,6 +126,7 @@ def cli():
                     print("(F) Calcule distancia minima(Fuerza Bruta)")
                     print("(E) Calcula distancia minima(Prim)")
                     print("(D) Calcula distancia minima(Programacion dinamica)")
+                    print("(K) Calcula distancia minima(Kruskall)")
                     v=input("Ingrese opcion ")
                     if(v=="S"):
                         arr = handlerBfs(b,0)
@@ -142,6 +147,10 @@ def cli():
                     if(v=="D"):
                         arr = HK(b)
                         escribirEnJson(arr[0],dep,arr[1])
+                        a=False
+                    if(v=="K"):
+                        arr = KruskallPrint(b)
+                        escribirEnJson(arr[1],dep,arr[0])
                         a=False
                 
                          
@@ -186,6 +195,7 @@ def cli():
                     print("(F) Calcule distancia minima(Fuerza Bruta)")
                     print("(E) Calcula distancia minima(Prim)")
                     print("(D) Calcula distancia minima(Programacion dinamica)")
+                    print("(K) Calcula distancia minima(Kruskall)")
                     v=input("Ingrese opcion: ")
                     if(v=="S"):
                         arr = handlerBfs(b,0)
@@ -206,6 +216,10 @@ def cli():
                     if(v=="D"):
                         arr = HK(b)
                         escribirEnJson(arr[0],prov,arr[1])
+                        a=False
+                    if(v=="K"):
+                        arr = KruskallPrint(b)
+                        escribirEnJson(arr[1],prov,arr[0])
                         a=False
                     
         if (c == 'B'):            
@@ -244,6 +258,7 @@ def cli():
                     print("(F) Calcule distancia minima(Fuerza Bruta)")
                     print("(E) Calcula distancia minima(Prim)")
                     print("(D) Calcula distancia minima(Programacion dinamica)")  
+                    print("(K) Calcula distancia minima(Kruskall)")
                     v=input("Ingrese opcion: ")
                     if(v=="S"):
                         arr = handlerBfs(b,0)
@@ -265,4 +280,20 @@ def cli():
                         arr = HK(b)
                         escribirEnJson(arr[0],dist,arr[1])
                         a=False
+                    if(v=="K"):
+                        arr = KruskallPrint(b)
+                        escribirEnJson(arr[1],dist,arr[0])
+                        a=False
+    if(x == str(3)):
+        print("INGRESE N CENTRO POBLADOS:")
+        v = input("Ingrese cantidad: ")
+        k = []
+        for i in range(int(v)):
+            k.append(data[i])
+        arr = PrimHandler(k)
+        escribirEnJson(arr[0],nomcp,arr[1])
+        a = False
+
+        
+
 cli() 
