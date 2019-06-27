@@ -53,9 +53,8 @@ se hace es terminar el correspondiente proceso recursivo, con lo que efectivamen
    
    
  - Kruskal:
-    >Es un algoritmo que consiste en un recorrido transversal de los elementos (si se visualiza como un árbol). Recorre todos los elementos del mismo nivel, y luego desciende al siguiente nivel y continúa el recorrido de manera transversal.
-
-   [![](https://www.gatevidyalay.com/wp-content/uploads/2018/07/Prims-and-Kruskals-Algorithm.png) 
+    >Es un algoritmo que consiste en tomar la arista de menor peso y continuar mientras no se formen ciclos.
+   ![](https://www.gatevidyalay.com/wp-content/uploads/2018/07/Prims-and-Kruskals-Algorithm.png)
 
 
 # Complejidad de las estrategias
