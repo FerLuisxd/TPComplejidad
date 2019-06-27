@@ -107,6 +107,8 @@ def KruskallPrint(data):   #HANDLER
         json.append(data[path[i][1]])
         i+=1
     print("Distancia: ", distancia)
+    end = time. time()
+    print("Tiempo: ", end - start, " segundos")
     print("JSON CREADO")
     return json, distancia    #DISTANCIA TOTAL, PATH
 

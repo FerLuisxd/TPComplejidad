@@ -290,9 +290,37 @@ def cli():
         k = []
         for i in range(int(v)):
             k.append(data[i])
-        arr = PrimHandler(k)
-        escribirEnJson(arr[0],nomcp,arr[1])
-        a = False
+        print("(S) Calcule distancia minima(BFS)")
+        print("(B) Calcule distancia minima(BackTracking)")
+        print("(F) Calcule distancia minima(Fuerza Bruta)")
+        print("(E) Calcula distancia minima(Prim)")
+        print("(D) Calcula distancia minima(Programacion dinamica)")  
+        print("(K) Calcula distancia minima(Kruskall)")
+        v=input("Ingrese opcion: ")
+        if(v=="S"):
+            arr = handlerBfs(k,0)
+            escribirEnJson(arr[0],nomcp,arr[1])#Ingresas(DATOS_ARRAY,SI ES DEP O PROV O DIST, Kilometros)
+            a = False
+        if(v=="B"):    
+            arr = btHandler(k)     
+            escribirEnJson(arr[0],nomcp,arr[1])
+            a = False
+        if(v=="F"):
+            arr = Comparing(k,0,dist)
+            escribirEnJson(arr[0][0],nomcp,arr[0][1])
+            a=False
+        if(v=="E"):
+            arr = PrimHandler(k)
+            escribirEnJson(arr[0],nomcp,arr[1])
+            a=False
+        if(v=="D"):
+            arr = HK(k)
+            escribirEnJson(arr[0],nomcp,arr[1])
+            a=False
+        if(v=="K"):
+            arr = KruskallPrint(k)
+            escribirEnJson(arr[0],nomcp,arr[1])
+            a=False
 
         
 
